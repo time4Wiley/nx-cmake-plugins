@@ -1,3 +1,16 @@
+## 0.8.0 (2024-09-17)
+
+
+### 🚀 Features
+
+- **command:** uses gcc 14 from homebrew on macOS ([69edbc0](https://github.com/time4Wiley/nx-cmake-plugins/commit/69edbc0))
+
+
+### ❤️  Thank You
+
+- Wei Sun
+- Wiley
+
 ## 0.7.2 (2024-03-19)
 
 
