@@ -92,7 +92,7 @@
                 "unitTestRunner": "jest"
             }
         },
-        "nx-cmaking": {
+        "nx-cmaker": {
             "binary": {
                 "language": "C",
                 "generateTests": true
@@ -125,11 +125,11 @@
         "@nx/js": {
             "analyzeSourceFiles": true
         },
-        "nx-cmaking": {
+        "nx-cmaker": {
             "language": "C",
             "cmakeConfigDir": ".cmake",
             "workspaceName": "workspace"
         }
     },
-    "plugins": ["nx-cmaking"]
+    "plugins": ["nx-cmaker"]
 }

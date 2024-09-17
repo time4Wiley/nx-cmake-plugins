@@ -2,5 +2,5 @@
 
 This repository is a collection of plugins for [Nx](https://nx.dev).
 
-- [nx-cmaking](plugins/nx-cmaking/README.md)
-- [create-nx-cmaking](plugins/create-nx-cmaking/README.md)
+- [nx-cmaker](plugins/nx-cmaker/README.md)
+- [create-nx-cmaker](plugins/create-nx-cmaker/README.md)

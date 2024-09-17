@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'e2e-nx-cmaker',
+    displayName: 'create-nx-cmaker',
     preset: '../../jest.preset.js',
     transform: {
         '^.+\\.[tj]s$': [
@@ -9,5 +9,5 @@ export default {
         ],
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/e2e/e2e-nx-cmaker',
+    coverageDirectory: '../../coverage/plugins/create-nx-cmaker',
 };

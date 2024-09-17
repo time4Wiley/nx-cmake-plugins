@@ -21,6 +21,6 @@ export const getConfigFile = (
     }
 
     throw new Error(
-        `Could not find ${configFile}. Please generate a preset using nx-cmaking:init or provide your own.`,
+        `Could not find ${configFile}. Please generate a preset using nx-cmaker:init or provide your own.`,
     );
 };

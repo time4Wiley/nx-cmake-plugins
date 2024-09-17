@@ -13,7 +13,7 @@ export type Graph = {
     };
 };
 
-const plugin = 'nx-cmaking';
+const plugin = 'nx-cmaker';
 
 describe(plugin, () => {
     let projectDirectory: string;
@@ -40,7 +40,7 @@ describe(plugin, () => {
             let args: string;
 
             beforeEach(() => {
-                projectName = 'nx-cmaking-test-c';
+                projectName = 'nx-cmaker-test-c';
                 args = '--output-style=stream --verbose';
                 cmd = `nx ${executorName} ${projectName} ${args}`;
             });
@@ -50,7 +50,7 @@ describe(plugin, () => {
                 execCmd(`nx ${executorName} lib${projectName} ${args}`);
                 execCmd(`nx ${executorName} lib${projectName}-lib ${args}`);
                 execCmd(`nx ${executorName} test${projectName} ${args}`);
-                projectName = 'nx-cmaking-test-cpp';
+                projectName = 'nx-cmaker-test-cpp';
                 execCmd((cmd = `nx ${executorName} ${projectName} ${args}`));
                 execCmd(`nx ${executorName} lib${projectName} ${args}`);
                 execCmd(`nx ${executorName} lib${projectName}-lib ${args}`);
@@ -75,29 +75,29 @@ describe(plugin, () => {
     describe('generators', () => {
         let projectName: string;
 
-        describe(`nx-cmaking:init`, () => {
+        describe(`nx-cmaker:init`, () => {
             it('should initialize', () => {
-                const cmd = `nx g nx-cmaking:init --no-interactive`;
+                const cmd = `nx g nx-cmaker:init --no-interactive`;
                 execCmd(cmd);
             });
         });
 
         describe('C generators', () => {
             beforeEach(() => {
-                projectName = 'nx-cmaking-test-c';
+                projectName = 'nx-cmaker-test-c';
             });
 
-            describe('nx-cmaking:bin', () => {
+            describe('nx-cmaker:bin', () => {
                 it('should generate C binary', () => {
-                    const cmd = `nx g nx-cmaking:bin --name=${projectName} --language=C --no-interactive`;
+                    const cmd = `nx g nx-cmaker:bin --name=${projectName} --language=C --no-interactive`;
                     execCmd(cmd);
                 });
             });
 
-            describe('nx-cmaking:lib', () => {
+            describe('nx-cmaker:lib', () => {
                 it('should generate C library', () => {
                     projectName += '-lib';
-                    const cmd = `nx g nx-cmaking:lib --name=${projectName} --language=C --no-interactive`;
+                    const cmd = `nx g nx-cmaker:lib --name=${projectName} --language=C --no-interactive`;
                     execCmd(cmd);
                 });
             });
@@ -127,9 +127,9 @@ describe(plugin, () => {
                 ]);
             });
 
-            describe('nx-cmaking:link', () => {
+            describe('nx-cmaker:link', () => {
                 it('should link C library', () => {
-                    const cmd = `nx g nx-cmaking:link --source=lib${projectName} --target=lib${projectName}-lib --no-interactive`;
+                    const cmd = `nx g nx-cmaker:link --source=lib${projectName} --target=lib${projectName}-lib --no-interactive`;
                     execCmd(cmd);
                 });
             });
@@ -183,17 +183,17 @@ describe(plugin, () => {
 
         describe('C++ generators', () => {
             beforeEach(() => {
-                projectName = 'nx-cmaking-test-cpp';
+                projectName = 'nx-cmaker-test-cpp';
             });
 
-            describe('nx-cmaking:bin', () => {
+            describe('nx-cmaker:bin', () => {
                 it('should generate C++ binary', () => {
-                    const cmd = `nx g nx-cmaking:bin --name=${projectName} --language=C++ --no-interactive`;
+                    const cmd = `nx g nx-cmaker:bin --name=${projectName} --language=C++ --no-interactive`;
                     execCmd(cmd);
                 });
             });
 
-            describe('nx-cmaking:lib', () => {
+            describe('nx-cmaker:lib', () => {
                 it('should generate C++ library', () => {
                     projectName += '-lib';
                     const cmd = `nx g ${plugin}:lib --name=${projectName} --language=C++ --no-interactive`;
@@ -226,9 +226,9 @@ describe(plugin, () => {
                 ]);
             });
 
-            describe('nx-cmaking:link', () => {
+            describe('nx-cmaker:link', () => {
                 it('should link C++ library', () => {
-                    const cmd = `nx g nx-cmaking:link --source=lib${projectName} --target=lib${projectName}-lib --no-interactive`;
+                    const cmd = `nx g nx-cmaker:link --source=lib${projectName} --target=lib${projectName}-lib --no-interactive`;
                     execCmd(cmd);
                 });
             });
@@ -288,24 +288,24 @@ describe(plugin, () => {
         testExecutor('lint');
         testExecutor('compile');
 
-        describe('nx-cmaking:execute', () => {
+        describe('nx-cmaker:execute', () => {
             let projectName: string;
             let cmd: string;
 
             beforeEach(() => {
-                projectName = 'nx-cmaking-test-c';
+                projectName = 'nx-cmaker-test-c';
                 args = '--output-style=stream --verbose';
                 cmd = `nx execute ${projectName} ${args}`;
             });
 
-            it('should run nx-cmaking:execute successfully', () => {
+            it('should run nx-cmaker:execute successfully', () => {
                 execCmd(cmd);
-                projectName = 'nx-cmaking-test-cpp';
+                projectName = 'nx-cmaker-test-cpp';
                 execCmd(cmd);
             });
         });
 
-        describe('nx-cmaking:test', () => {
+        describe('nx-cmaker:test', () => {
             let projectName: string;
             let cmd: string;
 
@@ -315,26 +315,26 @@ describe(plugin, () => {
                 cmd = `nx test ${projectName} ${args}`;
             });
 
-            it('should run nx-cmaking:test successfully', () => {
+            it('should run nx-cmaker:test successfully', () => {
                 execCmd(cmd);
                 projectName = 'testnx-cmake-test-cpp';
                 execCmd(cmd);
             });
         });
 
-        describe('nx-cmaking:debug', () => {
+        describe('nx-cmaker:debug', () => {
             let projectName: string;
             let cmd: string;
 
             beforeEach(() => {
-                projectName = 'nx-cmaking-test-c';
+                projectName = 'nx-cmaker-test-c';
                 args = '--output-style=stream --verbose';
                 cmd = `nx debug ${projectName} ${args} --args=-ex=r,-ex=q`;
             });
 
-            it('should run nx-cmaking:debug successfully', () => {
+            it('should run nx-cmaker:debug successfully', () => {
                 execCmd(cmd);
-                projectName = 'nx-cmaking-test-cpp';
+                projectName = 'nx-cmaker-test-cpp';
                 execCmd(cmd);
             });
         });
@@ -346,7 +346,7 @@ describe(plugin, () => {
  * @returns The directory where the test project was created
  */
 function createTestProject() {
-    const projectName = 'nx-cmaking-test';
+    const projectName = 'nx-cmaker-test';
     const projectDirectory = join(process.cwd(), 'tmp', projectName);
 
     // Ensure projectDirectory is empty

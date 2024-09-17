@@ -1,8 +1,8 @@
 {
-    "name": "e2e-nx-cmaking",
+    "name": "e2e-nx-cmaker",
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
-    "sourceRoot": "e2e/e2e-nx-cmaking/tests",
+    "sourceRoot": "e2e/e2e-nx-cmaker/tests",
     "targets": {
         "run-e2e": {
             "dependsOn": ["^publish"],
@@ -21,7 +21,7 @@
             "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["e2e/e2e-nx-cmaking/**/*.ts"]
+                "lintFilePatterns": ["e2e/e2e-nx-cmaker/**/*.ts"]
             },
             "configurations": {
                 "ci": {
@@ -30,5 +30,5 @@
             }
         }
     },
-    "implicitDependencies": ["nx-cmaking"]
+    "implicitDependencies": ["nx-cmaker"]
 }

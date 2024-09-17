@@ -4,7 +4,7 @@ import { mkdirSync, rmSync } from 'fs';
 
 process.env.npm_config_registry = 'http://localhost:4873';
 
-describe('create-nx-cmaking', () => {
+describe('create-nx-cmaker', () => {
     let projectDirectory: string;
 
     afterAll(() => {
@@ -19,7 +19,7 @@ describe('create-nx-cmaking', () => {
         projectDirectory = createTestProject();
 
         // npm ls will fail if the package is not installed properly
-        execSync('npm ls nx-cmaking', {
+        execSync('npm ls nx-cmaker', {
             cwd: projectDirectory,
             stdio: 'inherit',
         });
@@ -31,7 +31,7 @@ describe('create-nx-cmaking', () => {
  * @returns The directory where the test project was created
  */
 function createTestProject(extraArgs = '') {
-    const projectName = 'create-nx-cmaking-test';
+    const projectName = 'create-nx-cmaker-test';
     const projectDirectory = join(process.cwd(), 'tmp', projectName);
 
     // Ensure projectDirectory is empty
@@ -43,7 +43,7 @@ function createTestProject(extraArgs = '') {
         recursive: true,
     });
 
-    execSync(`npx create-nx-cmaking ${projectName} ${extraArgs}`, {
+    execSync(`npx create-nx-cmaker ${projectName} ${extraArgs}`, {
         cwd: dirname(projectDirectory),
         stdio: 'inherit',
         env: process.env,

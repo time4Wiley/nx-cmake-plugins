@@ -181,7 +181,7 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
 
-  plugins/create-nx-cmaking:
+  plugins/create-nx-cmaker:
     dependencies:
       create-nx-workspace:
         specifier: 18.0.8
@@ -190,7 +190,7 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
 
-  plugins/nx-cmaking:
+  plugins/nx-cmaker:
     dependencies:
       '@nx/devkit':
         specifier: 18.1.2

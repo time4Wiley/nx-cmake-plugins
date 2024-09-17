@@ -18,12 +18,12 @@ component_management:
               target: auto
 
     individual_components:
-        - component_id: nx-cmaking
+        - component_id: nx-cmaker
           paths:
-              - 'plugins/nx-cmaking/**'
-        - component_id: create-nx-cmaking
+              - 'plugins/nx-cmaker/**'
+        - component_id: create-nx-cmaker
           paths:
-              - 'plugins/create-nx-cmaking/**'
+              - 'plugins/create-nx-cmaker/**'
         - component_id: command
           paths:
               - 'packages/command/**'

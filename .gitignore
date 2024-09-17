@@ -41,7 +41,7 @@ Thumbs.db
 .gdb_history
 **/.gdb_history
 
-# nx-cmaking plugin
+# nx-cmaker plugin
 /.cmake
 /cmake
 /include
