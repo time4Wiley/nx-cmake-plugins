@@ -1,111 +1,136 @@
 {
-  "extends": "nx/presets/npm.json",
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "defaultBase": "origin/main",
-  "defaultProject": "verdaccio",
-  "nxCloudAccessToken": "YjY3MDg3MzAtNTQzMS00MTlhLTg2MjMtMjRjMTBlZDZiZTYwfHJlYWQtd3JpdGU=",
-  "workspaceLayout": { "appsDir": "bin", "libsDir": "packages" },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "cmake",
-          "build",
-          "test",
-          "lint",
-          "fmt",
-          "compile"
+    "extends": "nx/presets/npm.json",
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "defaultBase": "origin/main",
+    "defaultProject": "verdaccio",
+    "nxCloudAccessToken": "YjY3MDg3MzAtNTQzMS00MTlhLTg2MjMtMjRjMTBlZDZiZTYwfHJlYWQtd3JpdGU=",
+    "workspaceLayout": {
+        "appsDir": "bin",
+        "libsDir": "packages"
+    },
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "nx-cloud",
+            "options": {
+                "cacheableOperations": [
+                    "cmake",
+                    "build",
+                    "test",
+                    "lint",
+                    "fmt",
+                    "compile"
+                ],
+                "canTrackAnalytics": false,
+                "showUsageWarnings": true,
+                "useDaemonProcess": false
+            }
+        }
+    },
+    "targetDefaults": {
+        "build": {
+            "dependsOn": ["lint", "^build"],
+            "cache": true
+        },
+        "lint": {
+            "dependsOn": ["cmake"],
+            "inputs": ["default", "clangTidy"],
+            "cache": true
+        },
+        "@nx/jest:jest": {
+            "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
+            "options": {
+                "passWithNoTests": true
+            },
+            "configurations": {
+                "ci": {
+                    "ci": true,
+                    "codeCoverage": true
+                }
+            },
+            "cache": true
+        },
+        "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "options": {
+                "packageRoot": "dist/{projectRoot}"
+            }
+        }
+    },
+    "namedInputs": {
+        "cmake": [
+            "{projectRoot}/**/*.cpp",
+            "{projectRoot}/**/*.hpp",
+            "{projectRoot}/**/*.c",
+            "{projectRoot}/**/*.h",
+            "{projectRoot}/CMakeLists.txt",
+            "{workspaceRoot}/CMakeLists.txt",
+            "{workspaceRoot}/cmake/**/*.cmake"
         ],
-        "canTrackAnalytics": false,
-        "showUsageWarnings": true,
-        "useDaemonProcess": false
-      }
-    }
-  },
-  "targetDefaults": {
-    "build": { "dependsOn": ["lint", "^build"], "cache": true },
-    "lint": {
-      "dependsOn": ["cmake"],
-      "inputs": ["default", "clangTidy"],
-      "cache": true
+        "clangFormat": [
+            "{projectRoot}/.clang-format",
+            "{projectRoot}/.clang-format.yml",
+            "{projectRoot}/.clang-format.yaml",
+            "{workspaceRoot}/.clang-format",
+            "{workspaceRoot}/.clang-format.yml",
+            "{workspaceRoot}/.clang-format.yaml"
+        ],
+        "clangTidy": [
+            "{projectRoot}/.clang-tidy",
+            "{projectRoot}/.clang-tidy.yml",
+            "{projectRoot}/.clang-tidy.yaml",
+            "{workspaceRoot}/.clang-tidy",
+            "{workspaceRoot}/.clang-tidy.yml",
+            "{workspaceRoot}/.clang-tidy.yaml"
+        ]
     },
-    "@nx/jest:jest": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
-      "options": { "passWithNoTests": true },
-      "configurations": { "ci": { "ci": true, "codeCoverage": true } },
-      "cache": true
+    "generators": {
+        "@nx/js": {
+            "library": {
+                "projectNameAndRootFormat": "derived",
+                "minimal": true,
+                "simpleName": true,
+                "bundler": "tsc",
+                "unitTestRunner": "jest"
+            }
+        },
+        "nx-cmake": {
+            "binary": {
+                "language": "C",
+                "generateTests": true
+            },
+            "library": {
+                "language": "C",
+                "generateTests": true
+            }
+        }
     },
-    "nx-release-publish": {
-      "executor": "@nx/js:release-publish",
-      "options": { "packageRoot": "dist/{projectRoot}" }
-    }
-  },
-  "namedInputs": {
-    "cmake": [
-      "{projectRoot}/**/*.cpp",
-      "{projectRoot}/**/*.hpp",
-      "{projectRoot}/**/*.c",
-      "{projectRoot}/**/*.h",
-      "{projectRoot}/CMakeLists.txt",
-      "{workspaceRoot}/CMakeLists.txt",
-      "{workspaceRoot}/cmake/**/*.cmake"
-    ],
-    "clangFormat": [
-      "{projectRoot}/.clang-format",
-      "{projectRoot}/.clang-format.yml",
-      "{projectRoot}/.clang-format.yaml",
-      "{workspaceRoot}/.clang-format",
-      "{workspaceRoot}/.clang-format.yml",
-      "{workspaceRoot}/.clang-format.yaml"
-    ],
-    "clangTidy": [
-      "{projectRoot}/.clang-tidy",
-      "{projectRoot}/.clang-tidy.yml",
-      "{projectRoot}/.clang-tidy.yaml",
-      "{workspaceRoot}/.clang-tidy",
-      "{workspaceRoot}/.clang-tidy.yml",
-      "{workspaceRoot}/.clang-tidy.yaml"
-    ]
-  },
-  "generators": {
-    "@nx/js": {
-      "library": {
-        "projectNameAndRootFormat": "derived",
-        "minimal": true,
-        "simpleName": true,
-        "bundler": "tsc",
-        "unitTestRunner": "jest"
-      }
+    "release": {
+        "projects": ["plugins/*"],
+        "projectsRelationship": "independent",
+        "releaseTagPattern": "{projectName}-{version}",
+        "changelog": {
+            "workspaceChangelog": false,
+            "projectChangelogs": {
+                "file": "{projectRoot}/CHANGELOG.md",
+                "createRelease": "github"
+            }
+        },
+        "git": {
+            "commitMessage": "chore({projectName}): release version {version} [skip ci]"
+        },
+        "version": {
+            "conventionalCommits": true
+        }
     },
-    "nx-cmake": {
-      "binary": { "language": "C", "generateTests": true },
-      "library": { "language": "C", "generateTests": true }
-    }
-  },
-  "release": {
-    "projects": ["plugins/*"],
-    "projectsRelationship": "independent",
-    "releaseTagPattern": "{projectName}-{version}",
-    "changelog": {
-      "workspaceChangelog": false,
-      "projectChangelogs": {
-        "file": "{projectRoot}/CHANGELOG.md",
-        "createRelease": "github"
-      }
+    "pluginsConfig": {
+        "@nx/js": {
+            "analyzeSourceFiles": true
+        },
+        "nx-cmake": {
+            "language": "C",
+            "cmakeConfigDir": ".cmake",
+            "workspaceName": "workspace"
+        }
     },
-    "git": {
-      "commitMessage": "chore({projectName}): release version {version} [skip ci]"
-    },
-    "version": { "conventionalCommits": true }
-  },
-  "pluginsConfig": {
-    "@nx/js": { "analyzeSourceFiles": true },
-    "nx-cmake": {
-      "language": "C",
-      "cmakeConfigDir": ".cmake",
-      "workspaceName": "workspace"
-    }
-  },
-  "plugins": ["nx-cmake"]
+    "plugins": ["nx-cmake"]
 }
