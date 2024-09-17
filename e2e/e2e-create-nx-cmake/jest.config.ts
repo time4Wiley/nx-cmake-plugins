@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'e2e-create-nx-cmake',
+    displayName: 'e2e-create-nx-cmaking',
     preset: '../../jest.preset.js',
     transform: {
         '^.+\\.[tj]s$': [
@@ -9,5 +9,5 @@ export default {
         ],
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/e2e/e2e-create-nx-cmake',
+    coverageDirectory: '../../coverage/e2e/e2e-create-nx-cmaking',
 };

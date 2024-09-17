@@ -16,8 +16,8 @@ describe('formatNxJson', () => {
             pluginsConfig: { '@nx/js': { analyzeSourceFiles: true } },
             extends: 'nx/presets/npm.json',
             $schema: './node_modules/nx/schemas/nx-schema.json',
-            defaultProject: 'nx-cmake',
-            plugins: ['nx-cmake'],
+            defaultProject: 'nx-cmaking',
+            plugins: ['nx-cmaking'],
             targetDefaults: {
                 lint: {
                     inputs: [
@@ -65,8 +65,8 @@ describe('formatNxJson', () => {
             pluginsConfig: { '@nx/js': { analyzeSourceFiles: true } },
             extends: 'nx/presets/npm.json',
             $schema: './node_modules/nx/schemas/nx-schema.json',
-            defaultProject: 'nx-cmake',
-            plugins: ['nx-cmake'],
+            defaultProject: 'nx-cmaking',
+            plugins: ['nx-cmaking'],
             targetDefaults: {
                 lint: {
                     inputs: [
@@ -108,14 +108,14 @@ describe('formatNxJson', () => {
         expectedFormattedNxJson = {
             extends: 'nx/presets/npm.json',
             $schema: './node_modules/nx/schemas/nx-schema.json',
-            defaultProject: 'nx-cmake',
+            defaultProject: 'nx-cmaking',
             tasksRunnerOptions: {
                 default: {
                     runner: 'nx/tasks-runners/default',
                 },
             },
             pluginsConfig: { '@nx/js': { analyzeSourceFiles: true } },
-            plugins: ['nx-cmake'],
+            plugins: ['nx-cmaking'],
             targetDefaults: {
                 lint: {
                     inputs: [

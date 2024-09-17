@@ -40,7 +40,7 @@ describe('getConfigFile', () => {
         expect(() =>
             getConfigFile(workspaceRoot, projectRoot, configFile),
         ).toThrowError(
-            `Could not find ${configFile}. Please generate a preset using nx-cmake:init or provide your own.`,
+            `Could not find ${configFile}. Please generate a preset using nx-cmaking:init or provide your own.`,
         );
     });
 });
