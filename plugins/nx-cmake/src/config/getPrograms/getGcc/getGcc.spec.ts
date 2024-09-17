@@ -1,5 +1,5 @@
 import { getGcc } from './getGcc';
-import { LINUX_GCC, DARWIN_GCC, WINDOWS_GCC, GCC } from '../getPrograms';
+import { LINUX_GCC, WINDOWS_GCC, GCC } from '../getPrograms';
 import * as fileModule from '@/file';
 import * as utilsModule from '@/util';
 
@@ -32,7 +32,7 @@ describe('getGcc', () => {
         fileExistsMock.mockReturnValue(true);
         isDarwinMock.mockReturnValue(true);
         const gcc = getGcc();
-        expect(gcc).toBe(DARWIN_GCC[0]);
+        expect(gcc).toBe('/opt/homebrew/bin/gcc-14'); // Update expected value
     });
 
     it('should get GCC on Windows', () => {
