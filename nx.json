@@ -3,14 +3,13 @@
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "defaultBase": "origin/main",
     "defaultProject": "verdaccio",
-    "nxCloudAccessToken": "YjY3MDg3MzAtNTQzMS00MTlhLTg2MjMtMjRjMTBlZDZiZTYwfHJlYWQtd3JpdGU=",
     "workspaceLayout": {
         "appsDir": "bin",
         "libsDir": "packages"
     },
     "tasksRunnerOptions": {
         "default": {
-            "runner": "nx-cloud",
+            "runner": "nx/tasks-runners/default",
             "options": {
                 "cacheableOperations": [
                     "cmake",
