@@ -1,3 +1,15 @@
+## 0.8.1 (2024-09-18)
+
+
+### 🩹 Fixes
+
+- **getGcc): update Darwin GCC path to use CXX_ON_DARWIN constant test(getGcc.spec:** update expected value for Darwin GCC test case ([82384fb](https://github.com/time4Wiley/nx-cmake-plugins/commit/82384fb))
+
+
+### ❤️  Thank You
+
+- Wei Sun
+
 ## 0.7.3 (2024-09-18)
 
 
