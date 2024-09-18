@@ -19,7 +19,7 @@
         "ci": "pnpm fmt:check && pnpm lint:ci && pnpm build:ci && pnpm test:ci && pnpm e2e",
         "ci:test": "pnpm fmt:check && pnpm lint:ci && pnpm build:ci && pnpm test:ci",
         "prepare": "husky install",
-        "nx-publish": "SKIP_TESTS=true pnpm nx release publish --otp=$OTP && echo 'pnpm update nx-cmake && pnpm update create-nx-cmake'",
+        "nx-publish": "SKIP_TESTS=true pnpm nx release publish --otp=$OTP && echo 'pnpm update nx-cmaker && pnpm update create-nx-cmaker'",
         "test:commit:release:build": "pnpm test:all && opencommit && SKIP_TESTS=true pnpm nx release --skip-publish && pnpm build:all",
         "tcrb": "pnpm test:commit:release:build"
     },
