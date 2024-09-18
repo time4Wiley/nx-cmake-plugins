@@ -2,7 +2,7 @@ import { getProgram } from '../getProgram/getProgram';
 import { GCC } from '../getPrograms';
 import { isDarwin } from '@/util';
 
-export const CXX_ON_DARWIN = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++';
+export const CXX_ON_DARWIN = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -std=c++14';
 
 export const getGcc = () => {
     if (isDarwin(process.platform)) {
