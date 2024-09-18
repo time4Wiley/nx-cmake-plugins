@@ -21,7 +21,8 @@
         "prepare": "husky install",
         "nx-publish": "SKIP_TESTS=true pnpm nx release publish --otp=$OTP && echo 'pnpm update nx-cmaker && pnpm update create-nx-cmaker'",
         "test:commit:release:build": "pnpm test:all && opencommit && SKIP_TESTS=true pnpm nx release --skip-publish && pnpm build:all",
-        "tcrb": "pnpm test:commit:release:build"
+        "tcrb": "pnpm test:commit:release:build",
+        "nx-release": "SKIP_TESTS=true pnpm nx release --skip-publish"
     },
     "private": true,
     "devDependencies": {
