@@ -1,3 +1,15 @@
+## 0.9.1 (2024-09-18)
+
+
+### 🩹 Fixes
+
+- **getGcc.ts:** add C++14 standard flag to CXX_ON_DARWIN path ([3c21256](https://github.com/time4Wiley/nx-cmake-plugins/commit/3c21256))
+
+
+### ❤️  Thank You
+
+- Wei Sun
+
 ## 0.9.0 (2024-09-18)
 
 
