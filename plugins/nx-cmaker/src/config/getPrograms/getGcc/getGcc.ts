@@ -2,9 +2,11 @@ import { getProgram } from '../getProgram/getProgram';
 import { GCC } from '../getPrograms';
 import { isDarwin } from '@/util';
 
+const OptHomebrewBinGcc_14 = '/opt/homebrew/bin/gcc-14';
+
 export const getGcc = () => {
     if (isDarwin(process.platform)) {
-        return '/opt/homebrew/bin/gcc-14';
+        return OptHomebrewBinGcc_14;
     }
     const gcc = getProgram(GCC);
     return gcc;
@@ -15,7 +17,7 @@ export const CC_ON_DARWIN = '/Applications/Xcode.app/Contents/Developer/Toolchai
 
 export const getCc = () => {
     if (isDarwin(process.platform)) {
-        return CC_ON_DARWIN;
+        return OptHomebrewBinGcc_14;
     }
     const cc = getProgram(GCC);
     return cc;
