@@ -2,7 +2,7 @@ import { getProgram } from '../getProgram/getProgram';
 import { GCC } from '../getPrograms';
 import { isDarwin } from '@/util';
 
-const OptHomebrewBinGcc_14 = '/opt/homebrew/bin/gcc-14';
+const OptHomebrewBinGcc_14 = '/usr/bin/gcc';
 
 export const getGcc = () => {
     if (isDarwin(process.platform)) {
