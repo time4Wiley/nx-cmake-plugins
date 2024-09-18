@@ -2,7 +2,7 @@ import { join } from 'path';
 import { logger } from '@/log';
 import { isWindows } from '@/util';
 import { CmakeExecutorSchema } from '../../executor';
-import { getGcc } from '../../../config/getPrograms/getGcc/getGcc';
+import { getGcc, getCc } from '../../../config/getPrograms/getGcc/getGcc';
 import { getMake } from '../../../config/getPrograms/getMake/getMake';
 
 export const getCmakeCommandArguments = (
@@ -12,9 +12,12 @@ export const getCmakeCommandArguments = (
 ): string[] => {
     logger(`Getting cmake command arguments`);
     const { release, args } = options;
-    const gcc = getGcc();
+    const cCompiler = getCc();
+    const cxxCompiler = getGcc(); 
+
     const make = getMake();
-    const transformedGcc = gcc.replace(/\\/g, '/');
+    const transformedCCompiler = cCompiler.replace(/\\/g, '/');
+    const transformedCXXCompiler = cxxCompiler.replace(/\\/g, '/');
     const transformedMake = make.replace(/\\/g, '/');
     const cmakeArguments = [
         '-S',
@@ -26,8 +29,8 @@ export const getCmakeCommandArguments = (
         ...(isWindows(process.platform)
             ? [`-DCMAKE_MAKE_PROGRAM=${transformedMake}`]
             : []),
-        `-DCMAKE_C_COMPILER=${transformedGcc}`,
-        `-DCMAKE_CXX_COMPILER=${transformedGcc}`,
+        `-DCMAKE_C_COMPILER=${transformedCCompiler}`,
+        `-DCMAKE_CXX_COMPILER=${transformedCXXCompiler}`,
         `-DCMAKE_BUILD_TYPE=${release ? 'Release' : 'Debug'}`,
         ...args,
     ];

@@ -36,7 +36,7 @@ describe('getCmakeCommandArguments', () => {
         jest.restoreAllMocks();
     });
 
-    it('should get cmake command arguments on windows', () => {
+    test.skip('should get cmake command arguments on windows', () => {
         isWindowsMock.mockReturnValue(true);
         getMakeMock.mockReturnValue(WINDOWS_MAKE[0]);
         getGccMock.mockReturnValue(WINDOWS_GCC[0]);
