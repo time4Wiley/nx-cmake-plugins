@@ -1,3 +1,15 @@
+## 0.9.0 (2024-09-18)
+
+
+### 🚀 Features
+
+- **getGcc): add support for C compiler on Darwin and create getCc function refactor(getCmakeCommandArguments): use getCc for C compiler instead of getGcc test(getCmakeCommandArguments:** skip test for cmake command arguments on Windows ([de8cc5e](https://github.com/time4Wiley/nx-cmake-plugins/commit/de8cc5e))
+
+
+### ❤️  Thank You
+
+- Wei Sun
+
 ## 0.8.1 (2024-09-18)
 
 
