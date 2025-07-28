@@ -147,11 +147,11 @@
                 "createRelease": "github"
             }
         },
-        "git": {
-            "commitMessage": "chore({projectName}): release version {version} [skip ci]"
-        },
         "version": {
-            "conventionalCommits": true
+            "conventionalCommits": true,
+            "git": {
+                "commitMessage": "chore({projectName}): release version {version} [skip ci]"
+            }
         }
     },
     "plugins": ["nx-cmaker"],
