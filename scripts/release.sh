@@ -37,6 +37,15 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Step 2b: Fix imports for nx-cmaker
+echo "📦 Bundling internal dependencies for nx-cmaker..."
+node scripts/fix-imports.js
+
+if [ $? -ne 0 ]; then
+    echo "❌ Import fix failed"
+    exit 1
+fi
+
 # Step 3: Prepare for publishing
 echo ""
 echo "✅ Version bumped and packages built successfully!"

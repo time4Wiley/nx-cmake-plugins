@@ -11,6 +11,7 @@
         "build": "pnpm nx affected -t build --output-style=stream",
         "build:ci": "pnpm run build --configuration=ci",
         "build:all": "pnpm nx run-many -t build --output-style=stream --skip-nx-cache",
+        "build:nx-cmaker": "pnpm nx run nx-cmaker:build && node scripts/fix-imports.js",
         "test": "pnpm nx affected -t test --output-style=stream",
         "test:ci": "pnpm run test --configuration=ci",
         "test:all": "pnpm nx run-many -t test --output-style=stream --skip-nx-cache",
