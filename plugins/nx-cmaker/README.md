@@ -200,6 +200,14 @@ Generators provide the following options:
 | --source | The source project in which another library will be linked into. | string | N/A |
 | --target | The target library to link into the source project. | string | N/A |
 
+### `nx-cmaker:test` (aliases: t)
+
+#### Add tests to an existing C or C++ library
+
+| Options | Description | Type | Default |
+|---------|-------------|-----------|---------------|
+| --library | The name of the library to add tests to. | string | N/A |
+
 ## Executors
 
 All the executors support these additional properties:

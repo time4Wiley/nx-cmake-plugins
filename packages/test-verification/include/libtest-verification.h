@@ -1,0 +1,6 @@
+#ifndef _LIBTEST_VERIFICATION_TEST_VERIFICATION
+#define _LIBTEST_VERIFICATION_TEST_VERIFICATION
+
+int testVerification(void);
+
+#endif

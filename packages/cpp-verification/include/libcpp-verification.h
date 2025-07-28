@@ -1,0 +1,6 @@
+#ifndef _LIBCPP_VERIFICATION_CPP_VERIFICATION
+#define _LIBCPP_VERIFICATION_CPP_VERIFICATION
+
+int cppVerification(void);
+
+#endif

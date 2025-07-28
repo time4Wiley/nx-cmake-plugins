@@ -26,6 +26,12 @@
             "description": "Link a C or C++ library.",
             "aliases": ["ld"]
         },
+        "test": {
+            "factory": "./src/generators/test/testGenerator",
+            "schema": "./src/generators/test/schema.json",
+            "description": "Add tests to an existing C or C++ library.",
+            "aliases": ["t"]
+        },
         "preset": {
             "factory": "./src/generators/preset/presetGenerator",
             "schema": "./src/generators/preset/schema.json",

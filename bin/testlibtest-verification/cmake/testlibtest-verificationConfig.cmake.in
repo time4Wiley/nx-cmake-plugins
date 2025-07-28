@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+include(${ROOT}/dist/bin/libtest-verification/testlibtest-verification_Targets.cmake)
+
+list(APPEND CMAKE_PREFIX_PATH ${ROOT}/dist/packages/test-verification)
+find_dependency(libtest-verification)
