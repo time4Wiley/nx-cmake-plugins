@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "nx-cmaker-test",
+    "cli": "nx",
+    "title": "Add tests to an existing C/C++ library",
+    "description": "Generate test project for a library that was created without tests",
+    "type": "object",
+    "properties": {
+        "library": {
+            "description": "The name of the library to add tests to",
+            "type": "string",
+            "$default": {
+                "$source": "argv",
+                "index": 0
+            },
+            "x-prompt": "Which library would you like to add tests to?",
+            "x-priority": "important"
+        }
+    },
+    "required": ["library"]
+}
