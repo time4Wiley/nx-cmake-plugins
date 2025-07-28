@@ -93,9 +93,28 @@ if [ $? -eq 0 ]; then
     echo "   - nx-cmaker"
     echo "   - create-nx-cmaker"
     echo ""
-    echo "📌 Don't forget to:"
-    echo "   1. Push commits: git push"
-    echo "   2. Push tags: git push --tags"
+    
+    # Step 6: Push commits and tags
+    echo "📤 Pushing commits to remote..."
+    git push origin main
+    
+    if [ $? -eq 0 ]; then
+        echo "✅ Commits pushed successfully"
+    else
+        echo "⚠️  Failed to push commits, please run 'git push' manually"
+    fi
+    
+    echo "📤 Pushing tags to remote..."
+    git push --tags
+    
+    if [ $? -eq 0 ]; then
+        echo "✅ Tags pushed successfully"
+    else
+        echo "⚠️  Failed to push tags, please run 'git push --tags' manually"
+    fi
+    
+    echo ""
+    echo "🚀 Release fully completed!"
 else
     echo "❌ Publishing failed"
     exit 1
