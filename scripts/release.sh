@@ -28,6 +28,26 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Step 1b: Get new versions and create git tags
+echo "🏷️  Creating git tags..."
+NX_CMAKER_VERSION=$(node -p "require('./plugins/nx-cmaker/package.json').version")
+CREATE_NX_CMAKER_VERSION=$(node -p "require('./plugins/create-nx-cmaker/package.json').version")
+
+# Create tags
+git tag -a "nx-cmaker-${NX_CMAKER_VERSION}" -m "Release nx-cmaker v${NX_CMAKER_VERSION}"
+git tag -a "create-nx-cmaker-${CREATE_NX_CMAKER_VERSION}" -m "Release create-nx-cmaker v${CREATE_NX_CMAKER_VERSION}"
+
+echo "✅ Created tags: nx-cmaker-${NX_CMAKER_VERSION}, create-nx-cmaker-${CREATE_NX_CMAKER_VERSION}"
+
+# Commit version changes
+echo "💾 Committing version changes..."
+git add plugins/*/package.json
+git commit -m "chore(release): release version ${NX_CMAKER_VERSION} [skip ci]"
+
+if [ $? -ne 0 ]; then
+    echo "⚠️  No changes to commit (versions might already be committed)"
+fi
+
 # Step 2: Build
 echo "🔨 Building all packages..."
 pnpm build:all
