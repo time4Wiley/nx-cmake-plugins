@@ -1,6 +1,6 @@
 {
     "name": "create-nx-cmaker",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "typings": "./bin/index.d.ts",
     "bin": {
         "create-nx-cmaker": "./bin/index.js"
