@@ -4,13 +4,12 @@
 
 # Check if version type is provided
 if [ -z "$1" ]; then
-    echo "Usage: ./scripts/release.sh [patch|minor|major] [otp]"
-    echo "Example: ./scripts/release.sh major 123456"
+    echo "Usage: ./scripts/release.sh [patch|minor|major]"
+    echo "Example: ./scripts/release.sh major"
     exit 1
 fi
 
 VERSION_TYPE=$1
-OTP_CODE=$2
 
 # Validate version type
 if [[ ! "$VERSION_TYPE" =~ ^(patch|minor|major)$ ]]; then
@@ -38,17 +37,22 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Step 3: Publish with OTP
-if [ -z "$OTP_CODE" ]; then
-    echo "🔐 Enter your npm OTP code:"
-    read -r OTP_CODE
-fi
+# Step 3: Everything is ready, now ask for OTP
+echo ""
+echo "✅ Version bumped and packages built successfully!"
+echo "📦 Ready to publish to npm..."
+echo ""
+echo "🔐 Enter your npm OTP code:"
+read -r OTP_CODE
 
-echo "📦 Publishing to npm..."
+# Step 4: Publish with OTP
+echo "📤 Publishing to npm..."
 OTP=$OTP_CODE pnpm nx-publish
 
 if [ $? -eq 0 ]; then
-    echo "✅ Release completed successfully!"
+    echo ""
+    echo "🎉 Release completed successfully!"
+    echo "✅ Don't forget to push tags: git push --follow-tags"
 else
     echo "❌ Publishing failed"
     exit 1
