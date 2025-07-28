@@ -37,22 +37,36 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Step 3: Everything is ready, now ask for OTP
+# Step 3: Prepare for publishing
 echo ""
 echo "✅ Version bumped and packages built successfully!"
-echo "📦 Ready to publish to npm..."
+echo "📦 Preparing to publish to npm..."
+
+# Check which packages need to be published
 echo ""
-echo "🔐 Enter your npm OTP code:"
+echo "📋 Packages to publish:"
+ls -la dist/plugins/
+
+# Step 4: Now we're really ready - ask for OTP at the last moment
+echo ""
+echo "🔐 Enter your npm OTP code (will publish immediately after):"
 read -r OTP_CODE
 
-# Step 4: Publish with OTP
+# Step 5: Publish immediately after getting OTP
 echo "📤 Publishing to npm..."
-OTP=$OTP_CODE pnpm nx-publish
+cd dist/plugins/nx-cmaker && npm publish --otp=$OTP_CODE && cd ../../..
+cd dist/plugins/create-nx-cmaker && npm publish --otp=$OTP_CODE && cd ../../..
 
 if [ $? -eq 0 ]; then
     echo ""
     echo "🎉 Release completed successfully!"
-    echo "✅ Don't forget to push tags: git push --follow-tags"
+    echo "✅ Packages published:"
+    echo "   - nx-cmaker"
+    echo "   - create-nx-cmaker"
+    echo ""
+    echo "📌 Don't forget to:"
+    echo "   1. Push commits: git push"
+    echo "   2. Push tags: git push --tags"
 else
     echo "❌ Publishing failed"
     exit 1
