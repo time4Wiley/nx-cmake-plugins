@@ -56,7 +56,7 @@ describe('executeBinary', () => {
         fileExistsMock.mockReturnValue(false);
         expect(() =>
             executeBinary(workspaceRoot, projectRoot, projectName, options),
-        ).toThrowError(
+        ).toThrow(
             `The binary of ${projectName} was not found and could not be executed [Path: ${join(
                 '/workspace/dist/projectRoot/Debug/myProject',
             )}]`,

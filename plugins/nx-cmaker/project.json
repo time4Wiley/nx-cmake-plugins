@@ -3,6 +3,8 @@
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "plugins/nx-cmaker/src",
     "projectType": "library",
+    "tags": [],
+    "implicitDependencies": ["verdaccio"],
     "targets": {
         "lint": {
             "executor": "@nx/eslint:lint",
@@ -28,7 +30,6 @@
             "options": {
                 "outputPath": "dist/plugins/nx-cmaker",
                 "main": "plugins/nx-cmaker/src/index.ts",
-                "external": "none",
                 "tsConfig": "plugins/nx-cmaker/tsconfig.lib.json",
                 "assets": [
                     "plugins/nx-cmaker/*.md",
@@ -76,7 +77,5 @@
             "dependsOn": ["build"],
             "command": "nx upload verdaccio --name={projectName} --ver=0.0.0 --tag=latest"
         }
-    },
-    "implicitDependencies": ["verdaccio"],
-    "tags": []
+    }
 }

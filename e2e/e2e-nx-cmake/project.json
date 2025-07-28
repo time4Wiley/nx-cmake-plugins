@@ -3,6 +3,7 @@
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "projectType": "application",
     "sourceRoot": "e2e/e2e-nx-cmaker/tests",
+    "implicitDependencies": ["nx-cmaker"],
     "targets": {
         "run-e2e": {
             "dependsOn": ["^publish"],
@@ -29,6 +30,5 @@
                 }
             }
         }
-    },
-    "implicitDependencies": ["nx-cmaker"]
+    }
 }

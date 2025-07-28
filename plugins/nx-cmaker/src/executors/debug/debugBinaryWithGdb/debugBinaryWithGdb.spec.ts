@@ -73,7 +73,7 @@ describe('debugBinaryWithGdb', () => {
                 projectName,
                 options,
             ),
-        ).toThrowError();
+        ).toThrow();
         expect(checkCommandExistsMock).toHaveBeenCalledWith(GDB);
         expect(runCommandMock).not.toHaveBeenCalled();
     });

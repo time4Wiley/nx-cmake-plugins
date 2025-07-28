@@ -1,9 +1,6 @@
 import * as devkit from '@nx/devkit';
 
-export const mockFormatFiles = (): jest.SpyInstance<
-    Promise<void>,
-    [tree: devkit.Tree]
-> => {
+export const mockFormatFiles = () => {
     const formatFilesMock = jest
         .spyOn(devkit, 'formatFiles')
         .mockImplementation(jest.fn());

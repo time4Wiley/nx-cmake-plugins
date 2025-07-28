@@ -39,7 +39,7 @@ describe('getConfigFile', () => {
         fileExistsMock.mockReturnValueOnce(false);
         expect(() =>
             getConfigFile(workspaceRoot, projectRoot, configFile),
-        ).toThrowError(
+        ).toThrow(
             `Could not find ${configFile}. Please generate a preset using nx-cmaker:init or provide your own.`,
         );
     });

@@ -65,7 +65,7 @@ describe('buildProjectWithCMake', () => {
         });
         expect(() =>
             testBinaryWithCtest(workspaceRoot, projectRoot, options),
-        ).toThrowError();
+        ).toThrow();
         expect(checkCommandExistsMock).toHaveBeenCalledWith(CTEST);
         expect(runCommandFromDirectoryMock).not.toHaveBeenCalled();
     });

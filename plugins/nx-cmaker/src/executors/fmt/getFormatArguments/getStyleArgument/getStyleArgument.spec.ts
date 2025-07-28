@@ -47,6 +47,6 @@ describe('getStyleArgument', () => {
         });
         expect(() =>
             getStyleArgument(workspaceRoot, projectRoot, '.clang-format'),
-        ).toThrowError();
+        ).toThrow();
     });
 });

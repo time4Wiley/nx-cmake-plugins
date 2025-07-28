@@ -5,6 +5,8 @@ import { getProjectTypeAndVariant } from '../../utils/getProjectTypeAndVariant/g
 
 export const createNodesFunction: CreateNodesFunction = (
     projectConfigurationFile: string,
+    _options?: unknown,
+    _context?: unknown,
 ) => {
     try {
         const [root] = projectConfigurationFile.split(`/${PROJECT_FILE}`);

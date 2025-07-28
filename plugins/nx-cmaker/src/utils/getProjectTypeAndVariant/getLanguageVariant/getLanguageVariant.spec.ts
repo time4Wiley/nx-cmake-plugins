@@ -32,7 +32,7 @@ describe('getLanguageVariantFromConfigFileContent', () => {
     it('should throw if no language variant set', () => {
         configFileContent = 'set(LANGUAGE INCORRECTLY)\n';
         nxErrorOutputMock.mockImplementation(jest.fn());
-        expect(() => getLanguageVariant(configFileContent)).toThrowError();
+        expect(() => getLanguageVariant(configFileContent)).toThrow();
         expect(nxErrorOutputMock).toHaveBeenCalledWith({
             title: 'Failed to determine C language variant from CMakeLists.txt',
             bodyLines: ['Please make sure to have set(LANGUAGE <LANGUAGE>)'],
