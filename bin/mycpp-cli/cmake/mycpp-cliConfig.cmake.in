@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+include(${ROOT}/dist/bin/mycpp-cli/mycpp-cli_Targets.cmake)
+
+list(APPEND CMAKE_PREFIX_PATH ${ROOT}/dist/packages/mycpp-cli)
+find_dependency(libmycpp-cli)

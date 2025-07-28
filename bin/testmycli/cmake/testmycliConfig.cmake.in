@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+include(${ROOT}/dist/packages/mycli/testmycli_Targets.cmake)
+
+list(APPEND CMAKE_PREFIX_PATH ${ROOT}/dist/packages/mycli)
+find_dependency(libmycli)

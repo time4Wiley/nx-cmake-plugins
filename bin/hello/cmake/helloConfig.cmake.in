@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+include(${ROOT}/dist/bin/hello/hello_Targets.cmake)
+
+list(APPEND CMAKE_PREFIX_PATH ${ROOT}/dist/packages/hello)
+find_dependency(libhello)

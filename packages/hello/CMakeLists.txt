@@ -1,0 +1,40 @@
+include(../../.cmake/workspace.cmake)
+include(cmake/version.cmake)
+
+cmake_minimum_required(VERSION 3.21)
+
+set(PROJECT_NAME libhello)
+set(PROJECT_TYPE LIB)
+set(LANGUAGE C)
+
+set_project_settings(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR})
+
+project(${PROJECT_NAME} LANGUAGES ${LANGUAGE} VERSION ${${PROJECT_NAME}_VERSION})
+
+set_library_settings(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR})
+
+include(GNUInstallDirs)
+
+set_library_install_destination(${PROJECT_NAME})
+
+set_package_version(${PROJECT_NAME} ${${PROJECT_NAME}_VERSION})
+
+configure_package_config_file(
+    cmake/${PROJECT_NAME}Config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    INSTALL_DESTINATION ${${PROJECT_NAME}_INSTALL_CMAKEDIR}
+)
+
+export(
+    EXPORT ${PROJECT_NAME}_Targets
+    NAMESPACE ${PROJECT_NAME}::
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_Targets.cmake
+)
+
+export(PACKAGE ${PROJECT_NAME})
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    DESTINATION ${${PROJECT_NAME}_INSTALL_CMAKEDIR}
+)

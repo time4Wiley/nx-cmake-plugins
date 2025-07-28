@@ -1,0 +1,14 @@
+{
+  "name": "@nx-cmaker-test/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "dependencies": {
+    "nx-cmaker": "2.0.0"
+  },
+  "devDependencies": {
+    "@nx/workspace": "21.3.7",
+    "nx": "21.3.7"
+  }
+}

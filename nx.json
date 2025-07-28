@@ -1,22 +1,6 @@
 {
-    "pluginsConfig": {
-        "@nx/js": {
-            "analyzeSourceFiles": true
-        },
-        "nx-cmaker": {
-            "language": "C",
-            "cmakeConfigDir": ".cmake",
-            "workspaceName": "workspace"
-        }
-    },
     "extends": "nx/presets/npm.json",
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
-    "defaultBase": "origin/main",
     "defaultProject": "verdaccio",
-    "workspaceLayout": {
-        "appsDir": "bin",
-        "libsDir": "packages"
-    },
     "tasksRunnerOptions": {
         "default": {
             "runner": "nx/tasks-runners/default",
@@ -33,6 +17,22 @@
                 "showUsageWarnings": true
             }
         }
+    },
+    "pluginsConfig": {
+        "@nx/js": {
+            "analyzeSourceFiles": true
+        },
+        "nx-cmaker": {
+            "language": "C",
+            "cmakeConfigDir": ".cmake",
+            "workspaceName": "workspace"
+        }
+    },
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "defaultBase": "origin/main",
+    "workspaceLayout": {
+        "appsDir": "bin",
+        "libsDir": "packages"
     },
     "targetDefaults": {
         "build": {
@@ -62,6 +62,30 @@
             "options": {
                 "packageRoot": "dist/{projectRoot}"
             }
+        },
+        "cmake": {
+            "dependsOn": ["^cmake"],
+            "inputs": ["cmake"]
+        },
+        "compile": {
+            "dependsOn": ["^cmake", "^compile", "cmake"],
+            "inputs": ["default"]
+        },
+        "fmt": {
+            "dependsOn": [],
+            "inputs": ["clangFormat"]
+        },
+        "test": {
+            "dependsOn": ["compile"],
+            "inputs": ["default"]
+        },
+        "execute": {
+            "dependsOn": ["compile"],
+            "inputs": ["default"]
+        },
+        "debug": {
+            "dependsOn": ["compile"],
+            "inputs": ["default"]
         }
     },
     "namedInputs": {

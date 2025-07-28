@@ -1,0 +1,65 @@
+{
+    "name": "libhello",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "library",
+    "sourceRoot": "packages/hello/src",
+    "tags": ["c"],
+    "targets": {
+        "cmake": {
+            "executor": "nx-cmaker:cmake",
+            "defaultConfiguration": "debug",
+            "configurations": {
+                "debug": {
+                    "release": false,
+                    "args": []
+                },
+                "release": {
+                    "release": true,
+                    "args": []
+                }
+            }
+        },
+        "compile": {
+            "executor": "nx-cmaker:compile",
+            "defaultConfiguration": "debug",
+            "configurations": {
+                "debug": {
+                    "release": false,
+                    "args": []
+                },
+                "release": {
+                    "release": true,
+                    "args": []
+                }
+            }
+        },
+        "lint": {
+            "executor": "nx-cmaker:lint",
+            "defaultConfiguration": "local",
+            "configurations": {
+                "local": {
+                    "args": []
+                },
+                "ci": {
+                    "args": ["--warnings-as-errors=*"]
+                }
+            }
+        },
+        "fmt": {
+            "executor": "nx-cmaker:fmt",
+            "defaultConfiguration": "local",
+            "configurations": {
+                "local": {
+                    "args": [],
+                    "verbose": true,
+                    "editFilesInPlace": true
+                },
+                "ci": {
+                    "args": ["--dry-run", "--ferror-limit=0", "-Werror"],
+                    "verbose": false,
+                    "editFilesInPlace": false
+                }
+            }
+        }
+    }
+}

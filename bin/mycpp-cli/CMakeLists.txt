@@ -1,0 +1,18 @@
+include(../../.cmake/workspace.cmake)
+include(cmake/version.cmake)
+
+cmake_minimum_required(VERSION 3.21)
+
+set(PROJECT_NAME mycpp-cli)
+set(PROJECT_TYPE BIN)
+set(LANGUAGE CXX)
+
+set_project_settings(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR})
+
+project(${PROJECT_NAME} LANGUAGES ${LANGUAGE} VERSION ${${PROJECT_NAME}_VERSION})
+
+set_binary_settings(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR})
+
+install(TARGETS ${PROJECT_NAME})
+
+link_library(${PROJECT_NAME} mycpp-cli)
