@@ -90,13 +90,13 @@ describe('getDependencies', () => {
     it('should not get dependencies if no files to process', () => {
         filesToProcess = {};
         const result = getDependencies(libsDir, projects, filesToProcess);
-        expect(filterDependenciesOfProjectMock).toBeCalledTimes(0);
+        expect(filterDependenciesOfProjectMock).toHaveBeenCalledTimes(0);
         expect(result).toStrictEqual([]);
     });
 
     it('should get dependencies', () => {
         const result = getDependencies(libsDir, projects, filesToProcess);
-        expect(filterDependenciesOfProjectMock).toBeCalledTimes(
+        expect(filterDependenciesOfProjectMock).toHaveBeenCalledTimes(
             Object.keys(filesToProcess).length,
         );
         expect(result).toStrictEqual(expectedDependencies);

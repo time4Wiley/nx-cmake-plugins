@@ -2,7 +2,7 @@ import { getTag } from './getTag';
 
 describe('getTag', () => {
     it('should throw an error if tags are not defined', () => {
-        expect(() => getTag(undefined)).toThrowError(
+        expect(() => getTag(undefined)).toThrow(
             'No tags were defined in project.json',
         );
     });
@@ -14,13 +14,13 @@ describe('getTag', () => {
     });
 
     it('should error if no "c" or "cpp" tag is found', () => {
-        expect(() => getTag(['java', 'python', 'rust'])).toThrowError(
+        expect(() => getTag(['java', 'python', 'rust'])).toThrow(
             'No c or cpp tag was defined in project.json',
         );
     });
 
     it('should throw with empty input array', () => {
-        expect(() => getTag([])).toThrowError(
+        expect(() => getTag([])).toThrow(
             'No c or cpp tag was defined in project.json',
         );
     });

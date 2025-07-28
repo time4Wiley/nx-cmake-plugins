@@ -35,7 +35,7 @@ describe('compileProjectWithCMake', () => {
         });
         expect(() =>
             compileProjectWithCMake(workspaceRoot, projectRoot, options),
-        ).toThrowError();
+        ).toThrow();
         expect(runCommandMock).not.toHaveBeenCalled();
     });
 

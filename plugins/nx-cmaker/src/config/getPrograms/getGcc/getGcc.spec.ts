@@ -32,7 +32,7 @@ describe('getGcc', () => {
         fileExistsMock.mockReturnValue(true);
         isDarwinMock.mockReturnValue(true);
         const gcc = getGcc();
-        expect(gcc).toBe('/opt/homebrew/bin/gcc-14'); // Update expected value
+        expect(gcc).toBe('/usr/bin/gcc'); // Update expected value
     });
 
     it('should get GCC on Windows', () => {

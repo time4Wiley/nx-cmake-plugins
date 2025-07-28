@@ -54,6 +54,6 @@ describe('getLintArguments', () => {
         });
         expect(() =>
             getLintArguments(workspaceRoot, projectRoot, options),
-        ).toThrowError();
+        ).toThrow();
     });
 });

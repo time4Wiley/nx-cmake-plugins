@@ -71,6 +71,6 @@ describe('getFormatArguments', () => {
         });
         expect(() =>
             getFormatArguments(workspaceRoot, projectRoot, options),
-        ).toThrowError();
+        ).toThrow();
     });
 });

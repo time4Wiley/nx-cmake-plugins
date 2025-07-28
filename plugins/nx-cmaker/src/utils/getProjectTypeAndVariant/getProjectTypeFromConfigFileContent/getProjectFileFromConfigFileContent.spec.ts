@@ -38,9 +38,7 @@ describe('getProjectTypeFromConfigFileContent', () => {
     it('should throw an error for unknown content', () => {
         content = 'set(PROJECT_TYPE INCORRECT)';
         nxErrorOutputMock.mockImplementation(jest.fn());
-        expect(() =>
-            getProjectTypeFromConfigFileContent(content),
-        ).toThrowError();
+        expect(() => getProjectTypeFromConfigFileContent(content)).toThrow();
         expect(nxErrorOutputMock).toHaveBeenCalledWith({
             title: 'Failed to determine project type from CMakeLists.txt',
             bodyLines: [

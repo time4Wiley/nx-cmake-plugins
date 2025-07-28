@@ -29,7 +29,7 @@ describe('executeCommand', () => {
             throw new Error('Command failed');
         });
         const cmd = 'invalid-command';
-        expect(() => executeCommand(cmd)).toThrowError('Command failed');
+        expect(() => executeCommand(cmd)).toThrow('Command failed');
         expect(execSyncMock).toHaveBeenCalledWith(cmd, {
             encoding: 'utf-8',
             stdio: ['inherit', 'pipe', 'pipe'],

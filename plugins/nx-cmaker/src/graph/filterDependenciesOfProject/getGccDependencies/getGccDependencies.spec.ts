@@ -50,7 +50,7 @@ describe('getGccDependencies', () => {
         detectTestFrameworkSpy.mockReturnValue(false);
         expect(() =>
             getGccDependencies(cmd, projectRoot, workspaceRoot),
-        ).toThrowError(mockErrorMessage);
+        ).toThrow(mockErrorMessage);
         expect(executeCommandSpy).toHaveBeenCalledWith(cmd);
         expect(loggerMock).toHaveBeenCalledWith(JSON.stringify(mockError));
         expect(installTestFrameworkSpy).not.toHaveBeenCalled();

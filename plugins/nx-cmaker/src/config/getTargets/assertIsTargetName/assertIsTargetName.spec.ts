@@ -19,7 +19,7 @@ describe('assertIsTargetName', () => {
     });
 
     it('should throw an error for an invalid target name', () => {
-        expect(() => assertIsTargetName('invalidTargetName')).toThrowError(
+        expect(() => assertIsTargetName('invalidTargetName')).toThrow(
             'invalidTargetName is not a valid target',
         );
     });

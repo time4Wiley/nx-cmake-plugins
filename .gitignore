@@ -54,6 +54,9 @@ Thumbs.db
 /CMakeLists.txt
 
 .nx/cache
+.nx/workspace-data
 
 # Nix
 .direnv
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md

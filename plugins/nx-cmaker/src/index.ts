@@ -1,12 +1,12 @@
 import type { NxPluginV2 } from '@nx/devkit';
 import { PLUGIN_NAME as name } from './config/name';
 import { createDependencies } from './graph/createDependencies/createDependencies';
-import { createNodes } from './graph/createNodes/createNodes';
+import { createNodesV2 } from './graph/createNodesV2/createNodesV2';
 
 const nxPlugin: NxPluginV2 = {
     name,
     createDependencies,
-    createNodes,
+    createNodesV2,
 };
 
 export = nxPlugin;

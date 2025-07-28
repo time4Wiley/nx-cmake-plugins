@@ -41,6 +41,6 @@ describe('installTestFramework', () => {
         executeCommandSpy.mockReturnValue('');
         expect(() =>
             installTestFramework(workspaceRoot, projectRoot, cmd),
-        ).toThrowError('Failed process dependencies');
+        ).toThrow('Failed process dependencies');
     });
 });

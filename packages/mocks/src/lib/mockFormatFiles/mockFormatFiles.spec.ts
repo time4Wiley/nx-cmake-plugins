@@ -13,6 +13,6 @@ describe('mockFormatFiles', () => {
     it('should mock format files', async () => {
         const formatFilesMock = mockFormatFiles();
         await formatFiles(tree);
-        expect(formatFilesMock).toBeCalledTimes(1);
+        expect(formatFilesMock).toHaveBeenCalledTimes(1);
     });
 });

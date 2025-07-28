@@ -22,7 +22,7 @@ describe('readProjectFile', () => {
     it('should throw an error for an invalid project file', () => {
         const projectFile = 'invalid_project_file.txt';
 
-        expect(() => readProjectFile(projectFile)).toThrowError(
+        expect(() => readProjectFile(projectFile)).toThrow(
             'Invalid project file',
         );
     });

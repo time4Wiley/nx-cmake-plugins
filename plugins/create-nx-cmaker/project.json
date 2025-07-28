@@ -3,6 +3,8 @@
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "plugins/create-nx-cmaker/bin",
     "projectType": "library",
+    "tags": [],
+    "implicitDependencies": ["nx-cmaker"],
     "targets": {
         "lint": {
             "executor": "@nx/eslint:lint",
@@ -50,7 +52,5 @@
             "dependsOn": ["build"],
             "command": "nx upload verdaccio --name={projectName} --ver=0.0.0 --tag=latest"
         }
-    },
-    "tags": [],
-    "implicitDependencies": ["nx-cmaker"]
+    }
 }

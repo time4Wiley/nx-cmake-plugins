@@ -22,14 +22,16 @@ describe('commandExists', () => {
         executeCommandMock.mockReturnValue(true);
         const result = commandExists('clang-tidy');
         expect(result).toBe(true);
-        expect(executeCommandMock).toBeCalledWith('where.exe clang-tidy');
+        expect(executeCommandMock).toHaveBeenCalledWith('where.exe clang-tidy');
     });
 
     it('should call command if on unix and return true if command exists', () => {
         executeCommandMock.mockReturnValue(true);
         const result = commandExists('clang-tidy');
         expect(result).toBe(true);
-        expect(executeCommandMock).toBeCalledWith('command -v clang-tidy');
+        expect(executeCommandMock).toHaveBeenCalledWith(
+            'command -v clang-tidy',
+        );
     });
 
     it('should return false if command exists', () => {
@@ -38,7 +40,7 @@ describe('commandExists', () => {
             'clang-tidy-which-absolutely-doesnt-exist',
         );
         expect(result).toBe(false);
-        expect(executeCommandMock).toBeCalledWith(
+        expect(executeCommandMock).toHaveBeenCalledWith(
             'command -v clang-tidy-which-absolutely-doesnt-exist',
         );
     });
@@ -47,14 +49,14 @@ describe('commandExists', () => {
         executeCommandMock.mockReturnValue(true);
         const result = commandExists('ls command with spaces');
         expect(result).toBe(true);
-        expect(executeCommandMock).toBeCalledWith('command -v ls');
+        expect(executeCommandMock).toHaveBeenCalledWith('command -v ls');
     });
 
     it('should handle a command with special characters', () => {
         executeCommandMock.mockReturnValue(false);
         const result = commandExists('command-with-$pecial-ch@racters');
         expect(result).toBe(false);
-        expect(executeCommandMock).toBeCalledWith(
+        expect(executeCommandMock).toHaveBeenCalledWith(
             'command -v command-with-$pecial-ch@racters',
         );
     });
@@ -63,7 +65,7 @@ describe('commandExists', () => {
         executeCommandMock.mockReturnValue(true);
         const result = commandExists('/path/to/a/directory');
         expect(result).toBe(true);
-        expect(executeCommandMock).toBeCalledWith(
+        expect(executeCommandMock).toHaveBeenCalledWith(
             'command -v /path/to/a/directory',
         );
     });
@@ -72,13 +74,13 @@ describe('commandExists', () => {
         executeCommandMock.mockReturnValue(true);
         const result = commandExists('ls -l');
         expect(result).toBe(true);
-        expect(executeCommandMock).toBeCalledWith('command -v ls');
+        expect(executeCommandMock).toHaveBeenCalledWith('command -v ls');
     });
 
     it('should return false for a command that does not exist with arguments', () => {
         executeCommandMock.mockReturnValue(false);
         const result = commandExists('doesnt --exit -l');
         expect(result).toBe(false);
-        expect(executeCommandMock).toBeCalledWith('command -v doesnt');
+        expect(executeCommandMock).toHaveBeenCalledWith('command -v doesnt');
     });
 });
