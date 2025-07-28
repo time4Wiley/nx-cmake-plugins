@@ -20,6 +20,9 @@
         "ci:test": "pnpm fmt:check && pnpm lint:ci && pnpm build:ci && pnpm test:ci",
         "prepare": "husky install",
         "nx-publish": "SKIP_TESTS=true pnpm nx release publish --otp=$OTP && echo 'pnpm update nx-cmaker && pnpm update create-nx-cmaker'",
+        "publish:nx-cmaker": "cd dist/plugins/nx-cmaker && npm publish --otp=$OTP",
+        "publish:create-nx-cmaker": "cd dist/plugins/create-nx-cmaker && npm publish --otp=$OTP",
+        "publish:all": "pnpm build:all && echo 'Publishing nx-cmaker...' && pnpm publish:nx-cmaker && echo 'Publishing create-nx-cmaker...' && pnpm publish:create-nx-cmaker",
         "test:commit:release:build": "pnpm test:all && opencommit && SKIP_TESTS=true pnpm nx release --skip-publish && pnpm build:all",
         "tcrb": "pnpm test:commit:release:build",
         "nx-release": "SKIP_TESTS=true pnpm nx release --skip-publish"
