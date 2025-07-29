@@ -26,13 +26,13 @@ export async function initGenerator(
     
     const hasReleaseTools = nxJson.plugins.some((plugin: any) => 
       typeof plugin === 'string' 
-        ? plugin === '@time4pepter/nx-release-tools'
-        : plugin.plugin === '@time4pepter/nx-release-tools'
+        ? plugin === '@time4peter/nx-release-tools'
+        : plugin.plugin === '@time4peter/nx-release-tools'
     );
     
     if (!hasReleaseTools) {
       nxJson.plugins.push({
-        plugin: '@time4pepter/nx-release-tools',
+        plugin: '@time4peter/nx-release-tools',
         options: {
           packageManager,
         }

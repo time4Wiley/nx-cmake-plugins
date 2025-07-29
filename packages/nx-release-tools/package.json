@@ -1,5 +1,5 @@
 {
-    "name": "@time4pepter/nx-release-tools",
+    "name": "@time4peter/nx-release-tools",
     "version": "1.0.0",
     "type": "commonjs",
     "description": "Reusable release automation tools for Nx monorepos",
