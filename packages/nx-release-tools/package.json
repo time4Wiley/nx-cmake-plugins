@@ -1,6 +1,6 @@
 {
-    "name": "@nx-cmake/release-tools",
-    "version": "0.0.1",
+    "name": "@time4pepter/nx-release-tools",
+    "version": "1.0.0",
     "type": "commonjs",
     "description": "Reusable release automation tools for Nx monorepos",
     "keywords": [
