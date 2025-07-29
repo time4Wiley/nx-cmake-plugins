@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  nx-release-tools: link:../../Library/pnpm/global/5/node_modules/dist/packages/nx-release-tools
+
 importers:
 
   .:
@@ -14,6 +17,9 @@ importers:
       create-nx-workspace:
         specifier: 21.3.7
         version: 21.3.7
+      nx-release-tools:
+        specifier: link:../../Library/pnpm/global/5/node_modules/dist/packages/nx-release-tools
+        version: link:../../Library/pnpm/global/5/node_modules/dist/packages/nx-release-tools
       tslib:
         specifier: ^2.6.2
         version: 2.8.1
@@ -57,6 +63,9 @@ importers:
       '@swc/core':
         specifier: 1.5.7
         version: 1.5.7(@swc/helpers@0.5.17)
+      '@time4peter/nx-release-tools':
+        specifier: file:dist/packages/nx-release-tools
+        version: file:dist/packages/nx-release-tools(nx@21.3.7(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.17))(@swc/types@0.1.23)(typescript@5.8.3))(@swc/core@1.5.7(@swc/helpers@0.5.17)))
       '@types/jest':
         specifier: 30.0.0
         version: 30.0.0
@@ -1632,6 +1641,10 @@ packages:
   '@szmarczak/http-timer@5.0.1':
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
     engines: {node: '>=14.16'}
+
+  '@time4peter/nx-release-tools@file:dist/packages/nx-release-tools':
+    resolution: {directory: dist/packages/nx-release-tools, type: directory}
+    hasBin: true
 
   '@tokenizer/inflate@0.2.7':
     resolution: {integrity: sha512-MADQgmZT1eKjp06jpI2yozxaU9uVs4GzzgSL+uEq7bVcJ9V1ZXQkeGNql1fsSI0gMy1vhvNTNbUqrx+pZfJVmg==}
@@ -7088,6 +7101,16 @@ snapshots:
   '@szmarczak/http-timer@5.0.1':
     dependencies:
       defer-to-connect: 2.0.1
+
+  '@time4peter/nx-release-tools@file:dist/packages/nx-release-tools(nx@21.3.7(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.17))(@swc/types@0.1.23)(typescript@5.8.3))(@swc/core@1.5.7(@swc/helpers@0.5.17)))':
+    dependencies:
+      '@nx/devkit': 21.3.7(nx@21.3.7(@swc-node/register@1.9.2(@swc/core@1.5.7(@swc/helpers@0.5.17))(@swc/types@0.1.23)(typescript@5.8.3))(@swc/core@1.5.7(@swc/helpers@0.5.17)))
+      chalk: 4.1.2
+      glob: 11.0.3
+      prompts: 2.4.2
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - nx
 
   '@tokenizer/inflate@0.2.7':
     dependencies:

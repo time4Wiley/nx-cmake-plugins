@@ -1,6 +1,6 @@
 {
     "name": "@time4peter/nx-release-tools",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "type": "commonjs",
     "description": "Reusable release automation tools for Nx monorepos",
     "keywords": [
@@ -35,5 +35,15 @@
     "executors": "./executors.json",
     "devDependencies": {
         "@types/prompts": "^2.4.9"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/time4peter/nx-release-tools.git"
+    },
+    "homepage": "https://github.com/time4peter/nx-release-tools#readme",
+    "bugs": {
+        "url": "https://github.com/time4peter/nx-release-tools/issues"
+    },
+    "author": "time4peter",
+    "license": "MIT"
 }

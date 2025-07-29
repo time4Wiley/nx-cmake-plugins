@@ -167,6 +167,12 @@
             "options": {
                 "targetName": "eslint:lint"
             }
+        },
+        {
+            "plugin": "@time4peter/nx-release-tools",
+            "options": {
+                "packageManager": "pnpm"
+            }
         }
     ],
     "useDaemonProcess": false

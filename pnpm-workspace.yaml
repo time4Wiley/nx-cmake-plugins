@@ -1,4 +1,7 @@
 packages:
-    - 'packages/*'
-    - 'plugins/*'
-    - 'e2e/*'
+  - packages/*
+  - plugins/*
+  - e2e/*
+
+overrides:
+  nx-release-tools: link:../../Library/pnpm/global/5/node_modules/dist/packages/nx-release-tools
