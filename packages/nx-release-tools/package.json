@@ -1,6 +1,6 @@
 {
     "name": "@time4peter/nx-release-tools",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "type": "commonjs",
     "description": "Reusable release automation tools for Nx monorepos",
     "keywords": [
@@ -20,7 +20,9 @@
         "bin",
         "src",
         "scripts",
-        "templates"
+        "templates",
+        "generators.json",
+        "executors.json"
     ],
     "dependencies": {
         "@nx/devkit": "21.3.7",
