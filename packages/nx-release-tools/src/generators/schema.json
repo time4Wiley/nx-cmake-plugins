@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "Init",
+  "title": "Initialize Nx Release Tools",
+  "description": "Set up release automation for your Nx workspace",
+  "type": "object",
+  "properties": {
+    "packageManager": {
+      "type": "string",
+      "description": "Package manager to use",
+      "default": "npm",
+      "enum": ["npm", "pnpm", "yarn"],
+      "x-prompt": {
+        "message": "Which package manager do you use?",
+        "type": "list",
+        "items": [
+          { "value": "npm", "label": "npm" },
+          { "value": "pnpm", "label": "pnpm" },
+          { "value": "yarn", "label": "yarn" }
+        ]
+      }
+    },
+    "skipGitConfig": {
+      "type": "boolean",
+      "description": "Skip git configuration",
+      "default": false
+    }
+  },
+  "required": []
+}

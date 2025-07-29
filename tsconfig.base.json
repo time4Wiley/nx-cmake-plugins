@@ -22,6 +22,9 @@
             "@/types": ["packages/types/src/index.ts"],
             "@/util": ["packages/util/src/index.ts"],
             "@/verdaccio": ["packages/verdaccio/src/index.ts"],
+            "@nx-cmake/release-tools": [
+                "packages/nx-release-tools/src/index.ts"
+            ],
             "nx-cmaker": ["plugins/nx-cmaker/src/index.ts"]
         }
     },

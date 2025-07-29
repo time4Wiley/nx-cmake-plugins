@@ -1,4 +1,14 @@
 {
+    "pluginsConfig": {
+        "@nx/js": {
+            "analyzeSourceFiles": true
+        },
+        "nx-cmaker": {
+            "language": "C",
+            "cmakeConfigDir": ".cmake",
+            "workspaceName": "workspace"
+        }
+    },
     "extends": "nx/presets/npm.json",
     "defaultProject": "verdaccio",
     "tasksRunnerOptions": {
@@ -16,16 +26,6 @@
                 "canTrackAnalytics": false,
                 "showUsageWarnings": true
             }
-        }
-    },
-    "pluginsConfig": {
-        "@nx/js": {
-            "analyzeSourceFiles": true
-        },
-        "nx-cmaker": {
-            "language": "C",
-            "cmakeConfigDir": ".cmake",
-            "workspaceName": "workspace"
         }
     },
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
@@ -86,6 +86,11 @@
         "debug": {
             "dependsOn": ["compile"],
             "inputs": ["default"]
+        },
+        "@nx/js:tsc": {
+            "cache": true,
+            "dependsOn": ["^build"],
+            "inputs": ["default", "^default"]
         }
     },
     "namedInputs": {
@@ -137,7 +142,7 @@
         }
     },
     "release": {
-        "projects": ["plugins/*"],
+        "projects": ["plugins/*", "nx-release-tools"],
         "projectsRelationship": "independent",
         "releaseTagPattern": "{projectName}-{version}",
         "changelog": {
@@ -148,12 +153,21 @@
             }
         },
         "version": {
+            "preVersionCommand": "pnpm dlx nx run-many -t build",
             "conventionalCommits": true,
             "git": {
                 "commitMessage": "chore({projectName}): release version {version} [skip ci]"
             }
         }
     },
-    "plugins": ["nx-cmaker"],
+    "plugins": [
+        "nx-cmaker",
+        {
+            "plugin": "@nx/eslint/plugin",
+            "options": {
+                "targetName": "eslint:lint"
+            }
+        }
+    ],
     "useDaemonProcess": false
 }

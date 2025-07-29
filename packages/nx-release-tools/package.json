@@ -1,0 +1,37 @@
+{
+    "name": "@nx-cmake/release-tools",
+    "version": "0.0.1",
+    "type": "commonjs",
+    "description": "Reusable release automation tools for Nx monorepos",
+    "keywords": [
+        "nx",
+        "release",
+        "publish",
+        "npm",
+        "monorepo",
+        "automation"
+    ],
+    "main": "./src/index.js",
+    "types": "./src/index.d.ts",
+    "bin": {
+        "nx-release": "./bin/nx-release.js"
+    },
+    "files": [
+        "bin",
+        "src",
+        "scripts",
+        "templates"
+    ],
+    "dependencies": {
+        "@nx/devkit": "21.3.7",
+        "chalk": "^4.1.2",
+        "glob": "^11.0.3",
+        "prompts": "^2.4.2",
+        "tslib": "^2.3.0"
+    },
+    "generators": "./generators.json",
+    "executors": "./executors.json",
+    "devDependencies": {
+        "@types/prompts": "^2.4.9"
+    }
+}

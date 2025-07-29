@@ -1,0 +1,27 @@
+{
+  "packageManager": "<%= packageManager %>",
+  "packages": [
+    {
+      "name": "*",
+      "path": "packages/*",
+      "distPath": "dist/packages/*"
+    }
+  ],
+  "git": {
+    "tags": true,
+    "push": true,
+    "commitMessage": "chore(release): release version {version} [skip ci]"
+  },
+  "bundling": {
+    "enabled": false,
+    "aliases": {}
+  },
+  "build": {
+    "command": "<%= packageManager %> run build:all"
+  },
+  "publish": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "otpRequired": true
+  }
+}

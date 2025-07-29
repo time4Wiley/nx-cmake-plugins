@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "Release",
+  "title": "Release Executor",
+  "description": "Execute a release with version bump, build, and publish",
+  "type": "object",
+  "properties": {
+    "versionType": {
+      "type": "string",
+      "description": "Version bump type",
+      "enum": ["patch", "minor", "major"]
+    },
+    "dryRun": {
+      "type": "boolean",
+      "description": "Run without making changes",
+      "default": false
+    },
+    "skipGit": {
+      "type": "boolean",
+      "description": "Skip git operations",
+      "default": false
+    },
+    "skipNpm": {
+      "type": "boolean",
+      "description": "Skip npm publishing",
+      "default": false
+    }
+  },
+  "required": ["versionType"]
+}

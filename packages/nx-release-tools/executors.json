@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "executors": {
+    "release": {
+      "implementation": "./src/executors/release",
+      "schema": "./src/executors/schema.json",
+      "description": "Execute a release with version bump, build, and publish"
+    }
+  }
+}
