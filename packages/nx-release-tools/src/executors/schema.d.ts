@@ -3,4 +3,5 @@ export interface ReleaseExecutorSchema {
   dryRun?: boolean;
   skipGit?: boolean;
   skipNpm?: boolean;
+  packages?: string[];
 }

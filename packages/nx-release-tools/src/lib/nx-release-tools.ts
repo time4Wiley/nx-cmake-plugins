@@ -34,8 +34,14 @@ export class NxReleaseTools {
     return {}; // Default config
   }
 
-  async release(versionType: 'patch' | 'minor' | 'major'): Promise<void> {
-    console.log(chalk.cyan(`🚀 Starting ${versionType} release...`));
+  async release(versionType: 'patch' | 'minor' | 'major', options?: { packages?: string[] }): Promise<void> {
+    const packageFilter = options?.packages;
+    
+    if (packageFilter && packageFilter.length > 0) {
+      console.log(chalk.cyan(`🚀 Starting ${versionType} release for packages: ${packageFilter.join(', ')}`));
+    } else {
+      console.log(chalk.cyan(`🚀 Starting ${versionType} release for all packages...`));
+    }
 
     try {
       // Step 1: Version bump
@@ -51,11 +57,11 @@ export class NxReleaseTools {
 
       // Step 4: Git operations
       if (this.config.git?.tags) {
-        await this.createGitTags();
+        await this.createGitTags(packageFilter);
       }
 
       // Step 5: Publish with OTP
-      await this.publishWithOTP();
+      await this.publishWithOTP(packageFilter);
 
       // Step 6: Push to git
       if (this.config.git?.push) {
@@ -115,10 +121,21 @@ export class NxReleaseTools {
     }
   }
 
-  private async createGitTags(): Promise<void> {
+  private async createGitTags(packageFilter?: string[]): Promise<void> {
     console.log(chalk.blue('🏷️  Creating git tags...'));
 
-    const packages = this.config.packages || this.detectPackages();
+    let packages = this.config.packages || this.detectPackages();
+    
+    // Filter packages if specified
+    if (packageFilter && packageFilter.length > 0) {
+      packages = packages.filter((pkg: any) => {
+        // Check if package name matches any of the filters
+        return packageFilter.some(filter => {
+          const packageName = pkg.name || path.basename(pkg.path);
+          return packageName.includes(filter) || pkg.path.includes(filter);
+        });
+      });
+    }
 
     for (const pkg of packages) {
       const packagePaths = this.resolvePackagePaths(pkg);
@@ -152,7 +169,7 @@ export class NxReleaseTools {
     }
   }
 
-  private async publishWithOTP(): Promise<void> {
+  private async publishWithOTP(packageFilter?: string[]): Promise<void> {
     console.log(chalk.blue('📦 Preparing to publish...'));
 
     // Get OTP at the last moment
@@ -168,26 +185,56 @@ export class NxReleaseTools {
 
     console.log(chalk.blue('🚀 Publishing packages...'));
     
-    try {
-      const publishCommand = `${this.packageManager} nx release publish`;
-      execSync(publishCommand, {
-        stdio: 'inherit',
-        cwd: this.workspaceRoot,
-        env: { ...process.env, OTP: otp },
+    // If specific packages are requested, use direct npm publish
+    if (packageFilter && packageFilter.length > 0) {
+      console.log(chalk.yellow('Publishing specific packages...'));
+      let packages = this.config.packages || this.detectPackages();
+      
+      // Filter packages
+      packages = packages.filter((pkg: any) => {
+        return packageFilter.some(filter => {
+          const packageName = pkg.name || path.basename(pkg.path);
+          return packageName.includes(filter) || pkg.path.includes(filter);
+        });
       });
-    } catch (error) {
-      // If nx release publish fails, try direct npm publish
-      console.log(chalk.yellow('Trying direct npm publish...'));
-      const packages = this.config.packages || this.detectPackages();
       
       for (const pkg of packages) {
         const distPaths = pkg.distPath ? [pkg.distPath] : [pkg.path];
         for (const distPath of distPaths) {
-          const publishCmd = `npm publish ${distPath} --otp=${otp}`;
-          execSync(publishCmd, {
-            stdio: 'inherit',
-            cwd: this.workspaceRoot,
-          });
+          const resolvedPaths = this.resolveDistPaths(distPath);
+          for (const path of resolvedPaths) {
+            const publishCmd = `npm publish ${path} --otp=${otp}`;
+            console.log(chalk.gray(`Publishing ${path}...`));
+            execSync(publishCmd, {
+              stdio: 'inherit',
+              cwd: this.workspaceRoot,
+            });
+          }
+        }
+      }
+    } else {
+      // Try nx release publish for all packages
+      try {
+        const publishCommand = `${this.packageManager} nx release publish`;
+        execSync(publishCommand, {
+          stdio: 'inherit',
+          cwd: this.workspaceRoot,
+          env: { ...process.env, OTP: otp },
+        });
+      } catch (error) {
+        // If nx release publish fails, try direct npm publish
+        console.log(chalk.yellow('Trying direct npm publish...'));
+        const packages = this.config.packages || this.detectPackages();
+        
+        for (const pkg of packages) {
+          const distPaths = pkg.distPath ? [pkg.distPath] : [pkg.path];
+          for (const distPath of distPaths) {
+            const publishCmd = `npm publish ${distPath} --otp=${otp}`;
+            execSync(publishCmd, {
+              stdio: 'inherit',
+              cwd: this.workspaceRoot,
+            });
+          }
         }
       }
     }
@@ -282,5 +329,17 @@ export class NxReleaseTools {
     }
     
     return [basePath];
+  }
+
+  private resolveDistPaths(distPath: string): string[] {
+    const fullPath = path.join(this.workspaceRoot, distPath);
+    
+    if (distPath.includes('*')) {
+      // Handle glob patterns
+      const glob = require('glob');
+      return glob.sync(fullPath);
+    }
+    
+    return [fullPath];
   }
 }

@@ -9,7 +9,7 @@ export default async function runExecutor(
   options: ReleaseExecutorSchema,
   context: ExecutorContext
 ) {
-  const { versionType, dryRun = false, skipGit = false, skipNpm = false } = options;
+  const { versionType, dryRun = false, skipGit = false, skipNpm = false, packages } = options;
   
   // Load configuration
   const configPath = path.join(context.root, '.nx-release.json');
@@ -22,7 +22,11 @@ export default async function runExecutor(
   const packageManager = config.packageManager || 'npm';
   
   try {
-    logger.info(`🚀 Starting ${versionType} release...`);
+    if (packages && packages.length > 0) {
+      logger.info(`🚀 Starting ${versionType} release for packages: ${packages.join(', ')}`);
+    } else {
+      logger.info(`🚀 Starting ${versionType} release for all packages...`);
+    }
     
     // Step 1: Version bump
     if (!dryRun) {
@@ -36,7 +40,7 @@ export default async function runExecutor(
     // Step 2: Create git tags
     if (!skipGit && !dryRun) {
       logger.info('🏷️  Creating git tags...');
-      await createGitTags(context.root, config);
+      await createGitTags(context.root, config, packages);
     }
     
     // Step 3: Build
@@ -112,8 +116,18 @@ export default async function runExecutor(
   }
 }
 
-async function createGitTags(root: string, config: any) {
-  const packages = config.packages || [];
+async function createGitTags(root: string, config: any, packageFilter?: string[]) {
+  let packages = config.packages || [];
+  
+  // Filter packages if specified
+  if (packageFilter && packageFilter.length > 0) {
+    packages = packages.filter((pkg: any) => {
+      return packageFilter.some(filter => {
+        const packageName = pkg.name || path.basename(pkg.path);
+        return packageName.includes(filter) || pkg.path.includes(filter);
+      });
+    });
+  }
   
   for (const pkgConfig of packages) {
     const packagePaths = pkgConfig.path.includes('*')

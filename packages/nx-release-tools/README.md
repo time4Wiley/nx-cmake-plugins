@@ -5,6 +5,7 @@ Automated release tools for Nx monorepos with OTP-aware publishing, git tagging,
 ## Features
 
 - 🚀 **Automated Releases** - Version bump, build, and publish in one command
+- 🎯 **Individual Package Release** - Release specific packages with `--packages` flag
 - 🔐 **Smart OTP Handling** - Prompts for OTP only when ready to publish
 - 🏷️ **Auto Git Tagging** - Creates git tags for each package version
 - 📦 **TypeScript Bundling** - Bundles internal dependencies and fixes path aliases
@@ -62,6 +63,7 @@ Edit `.nx-release.json` to customize:
 
 ### 3. Create a Release
 
+#### Release All Packages
 ```bash
 # Patch release (0.0.x)
 npm run release:patch
@@ -71,6 +73,20 @@ npm run release:minor
 
 # Major release (x.0.0)
 npm run release:major
+```
+
+#### Release Specific Packages
+```bash
+# Release only specific packages
+nx-release patch --packages package-a,package-b
+
+# Or use npm scripts with package names
+npx nx-release minor -p utils,core
+
+# Examples:
+nx-release patch --packages @my-org/utils
+nx-release minor --packages shared,components
+nx-release major -p authentication
 ```
 
 ## How It Works
@@ -147,9 +163,25 @@ Use in `project.json`:
       "options": {
         "versionType": "patch"
       }
+    },
+    "release-specific": {
+      "executor": "@time4peter/nx-release-tools:release",
+      "options": {
+        "versionType": "minor",
+        "packages": ["utils", "core"]
+      }
     }
   }
 }
+```
+
+Run with:
+```bash
+# Release all packages
+nx release my-project
+
+# Release specific packages
+nx release-specific my-project
 ```
 
 ## License

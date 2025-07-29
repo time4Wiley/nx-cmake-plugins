@@ -5,6 +5,12 @@ const chalk = require('chalk');
 
 const [,, command, ...args] = process.argv;
 
+// Parse package filter from args
+const packageIndex = args.findIndex(arg => arg === '--packages' || arg === '-p');
+const packages = packageIndex !== -1 && args[packageIndex + 1] 
+  ? args[packageIndex + 1].split(',')
+  : undefined;
+
 async function main() {
   const tools = new NxReleaseTools();
   
@@ -13,7 +19,7 @@ async function main() {
       case 'patch':
       case 'minor':
       case 'major':
-        await tools.release(command);
+        await tools.release(command, { packages });
         break;
       
       case 'init':
@@ -44,16 +50,20 @@ ${chalk.bold('Commands:')}
   ${chalk.cyan('init')}     Initialize release configuration
 
 ${chalk.bold('Options:')}
-  --dry-run    Run without making changes
-  --skip-git   Skip git operations
-  --skip-npm   Skip npm publishing
+  --dry-run             Run without making changes
+  --skip-git            Skip git operations
+  --skip-npm            Skip npm publishing
+  --packages, -p        Specific packages to release (comma-separated)
 
 ${chalk.bold('Configuration:')}
   Configure in .nx-release.json or nx-release.config.js
 
 ${chalk.bold('Examples:')}
-  ${chalk.gray('# Create a patch release')}
+  ${chalk.gray('# Create a patch release for all packages')}
   nx-release patch
+  
+  ${chalk.gray('# Release specific packages only')}
+  nx-release patch --packages package-a,package-b
   
   ${chalk.gray('# Initialize configuration')}
   nx-release init

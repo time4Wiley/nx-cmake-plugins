@@ -24,6 +24,13 @@
       "type": "boolean",
       "description": "Skip npm publishing",
       "default": false
+    },
+    "packages": {
+      "type": "array",
+      "description": "Specific packages to release (e.g., ['package-a', 'package-b'])",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": ["versionType"]
