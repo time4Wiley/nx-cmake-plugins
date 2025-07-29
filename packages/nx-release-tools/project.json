@@ -19,7 +19,35 @@
                 "outputPath": "dist/packages/nx-release-tools",
                 "main": "packages/nx-release-tools/src/index.ts",
                 "tsConfig": "packages/nx-release-tools/tsconfig.lib.json",
-                "assets": []
+                "assets": [
+                    "packages/nx-release-tools/generators.json",
+                    "packages/nx-release-tools/executors.json",
+                    {
+                        "input": "packages/nx-release-tools/src",
+                        "glob": "**/*.json",
+                        "output": "src"
+                    },
+                    {
+                        "input": "packages/nx-release-tools/src",
+                        "glob": "**/*.js__tmpl__",
+                        "output": "src"
+                    },
+                    {
+                        "input": "packages/nx-release-tools/src",
+                        "glob": "**/*.sh__tmpl__",
+                        "output": "src"
+                    },
+                    {
+                        "input": "packages/nx-release-tools/src",
+                        "glob": "**/*.json__tmpl__",
+                        "output": "src"
+                    },
+                    {
+                        "input": "packages/nx-release-tools/bin",
+                        "glob": "**/*",
+                        "output": "bin"
+                    }
+                ]
             }
         },
         "nx-release-publish": {
